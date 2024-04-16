@@ -1,0 +1,332 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage[a4paper, portrait, margin=1in]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{xcolor} 
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tocloft}
+\usepackage{setspace}
+\graphicspath{ {./images/} }
+\renewcommand{\cfttoctitlefont}{\MakeUppercase}
+
+
+
+% Set chapter and section headings formatting
+\titleformat{\chapter}[display]{\normalfont\fontsize{18}{19}\bfseries\centering}{\chaptertitlename\ \thechapter}{0.5em}{\MakeUppercase}
+\titleformat{\section}[block]{\normalfont\fontsize{12}{14.4}\bfseries}{\thesection}{1em}{\MakeUppercase}
+\titleformat{\subsection}[block]{\normalfont\fontsize{12}{14.4}\itshape}{\thesubsection}{1em}{\MakeUppercase}
+
+% Set figure and table captions formatting
+%\captionsetup[figure]{font={small,normal}}
+%\captionsetup[table]{font={small,normal}}
+
+% Set footnote text size
+\renewcommand{\footnotesize}{\fontsize{9}{11}\selectfont}
+
+
+\usepackage[square,sort,comma,numbers,super]{natbib}
+
+ 
+
+\usepackage{caption}
+\usepackage{float}
+\graphicspath{ {./Images/} }
+\makeatletter
+\patchcmd{\@maketitle}{\LARGE \@title}{\fontsize{16}{19.2}\selectfont\@title}{}{}
+\makeatother
+\date{}    
+
+\usepackage{amsmath} % for math environments and operations
+\usepackage{bm}      % for bold symbols in math mode
+
+\begin{document}
+\doublespacing
+\thispagestyle{empty}
+\vspace*{0.5cm}
+\begin{center}
+\textbf{\Large
+ Heart attack prediction using multi-modal technique\\
+}
+\vspace*{2cm}
+\vspace*{2cm}
+
+By \\
+\vspace*{1cm}
+\textbf{Harsh Prajapati}
+
+\textbf{120CS0206}
+\vspace*{2cm} \\
+Under the guidance of
+
+\textbf{Prof. Ratnakar Dash}
+\vspace*{2cm}
+\begin{center}
+\includegraphics[max width=0.25\textwidth]{Images/NIT_Rourkela_Colour_Logo.svg}
+\end{center}
+
+\textbf{Department of Computer Science and Engineering, \\ National Institute of Technology, Rourkela \\ 4 March, 2024}
+\end{center}
+
+
+
+%%\vspace*{3cm}
+\section{Executive Summary}
+\setstretch{1.2}
+Cardiovascular disease, especially heart attacks, is a major health problem around the world. This research aims to harness the power of artificial neural networks to develop a robust predictive model to assess a person's likelihood of having a heart attack.
+\\
+The proposed approach introduces a novel multimodal neural network architecture that can process two different types of input data: tabular blood reports in XLSX format and an electrocardiogram (ECG) dataset.
+The uniqueness of this model lies in its flexibility, allowing accurate predictions even when only one type of data is available.
+\\
+
+The design of multimodal neural networks aims to achieve high accuracy while minimizing  computational complexity. Strategically incorporating both types of input data improves the model's predictive ability. The use of a multilayer architecture facilitates efficient feature extraction and enables the network to recognize complex patterns in both blood reports and ECG data.
+The focus is on the adaptability of the model to seamlessly integrate both datasets for prediction. This adaptability not only increases the model's applicability in practice, but also makes it a valuable tool in scenarios where  comprehensive data acquisition is difficult.
+\\
+
+The proposed multimodal neural network undergoes rigorous evaluation using different datasets including different demographics and medical conditions.
+This result demonstrates the effectiveness of the model in accurately predicting the likelihood of a heart attack, especially when using both types of input data.
+\\
+This study contributes to the advancement of predictive health models and provides a versatile and accurate tool for assessing heart attack risk.
+The combination of  flexible architecture and efficient use of diverse datasets represents an important step towards personalized and effective medical interventions.
+\\
+
+\textbf{References:}\\
+●  IEEE Transactions on Pattern Analysis and Machine Intelligence ( Volume: 45, Issue: 10, October 2023), ieeexplore.ieee.org\\
+● Selvarajah Thuseethan; Sivasubramaniam Janarthan; Multimodal Deep Learning Framework for Sentiment Analysis from Text-Image Web Data, ieeexplore.ieee.org\\
+
+\newpage
+\setstretch{1.5}
+\tableofcontents
+
+\newpage
+\section{INTRODUCTION}
+\setstretch{1.3}
+Cardiovascular diseases, particularly incidents of heart attacks, represent a critical global health concern, contributing significantly to morbidity and mortality rates. Despite advancements in medical science, accurately predicting an individual's susceptibility to a heart attack remains a complex challenge. This research seeks to address this challenge by harnessing the capabilities of artificial neural networks, offering a novel approach to enhance predictive accuracy.\\\
+
+In the domain of computer science engineering, the integration of advanced technologies into healthcare has become paramount. Artificial neural networks, inspired by the human brain's learning processes, provide a powerful tool for pattern recognition and prediction. This research endeavors to push the boundaries of this technology by introducing a multimodal neural network that can seamlessly process two distinct types of medical data: tabular blood reports in .xlsx format and electrocardiogram (ECG) datasets.\\
+
+The significance of this research lies in its potential to revolutionize heart attack prediction by amalgamating diverse but complementary sources of health information. By combining the quantitative insights from blood reports with the temporal and waveform data from ECGs, the proposed model aims to provide a more comprehensive understanding of an individual's cardiovascular health. This not only contributes to the advancement of computer science in healthcare applications but also addresses a crucial gap in preventive medicine.\\\
+
+Furthermore, the flexibility of the proposed model is highlighted, as it is designed to accommodate either blood reports or ECG data independently. However, the true innovation lies in its ability to achieve heightened accuracy when both datasets are available, paving the way for a holistic and integrated approach to heart attack prediction. In a world where healthcare resources are often strained, the potential impact of an accurate and efficient predictive model is immense, enabling timely interventions and personalized healthcare strategies. This research, therefore, stands at the intersection of computer science, healthcare, and preventive medicine, aiming to provide a transformative solution to a pressing global health challenge.
+\\\
+
+\newpage
+\pagenumbering{arabic}
+
+
+\section{\MakeUppercase{Research Problem}}
+\setlength{\parindent}{0em}
+Cardiovascular diseases, especially heart attacks, stand as a predominant global health challenge. The difficulty in predicting the occurrence of a heart attack with precision remains a critical problem. This research project addresses this challenge by proposing a solution based on artificial neural networks. Specifically, the research aims to develop a multimodal neural network capable of handling two distinct types of inputs – tabular blood reports in .xlsx format and ECG datasets – with a focus on achieving heightened accuracy when both datasets are available.\\
+
+The choice of this research problem is grounded in the urgent need for more accurate and nuanced methods of predicting heart attacks, a leading cause of mortality worldwide. Conventional risk assessment models often lack the depth required for early and precise detection. The integration of blood reports and ECG data into a single, flexible model is motivated by the complementary nature of these datasets. Blood reports offer comprehensive biochemical insights, while ECG data captures vital cardiac activity patterns.\\
+
+The significance of this problem is underscored by the potential to revolutionize preventive healthcare. Timely prediction of heart attacks allows for proactive interventions, reducing the burden on healthcare systems and improving patient outcomes. By addressing the limitations of existing models and leveraging the capabilities of artificial neural networks, this research seeks to contribute to the development of a sophisticated yet accessible tool for accurate heart attack prediction.\\
+
+In essence, the research problem is chosen not only for its scientific and technological challenges but, more importantly, for its potential real-world impact on public health. The proposed multimodal neural network represents a step towards personalized and efficient healthcare, aligning with the broader goals of enhancing preventive medicine in the era of advanced computational methodologies.
+
+
+
+
+\newpage
+\section{\MakeUppercase{Research Objectives}}
+\setstretch{1.5}
+\\
+The primary objectives of this research project are to develop and implement a highly accurate predictive model for assessing the risk of a person experiencing a heart attack. Specifically, the research aims to achieve the following:\\
+
+1.1  \textbf{Multimodal Integration}:
+Develop a multimodal neural network capable of seamlessly integrating two diverse types of medical data – tabular blood reports in .xlsx format and ECG datasets.\\
+
+1.2  \textbf{Flexibility and Adaptability}:
+Design the model to be flexible, accommodating either blood reports or ECG data individually, while maximizing predictive accuracy when both datasets are available.\\
+
+1.3  \textbf{Efficiency with Reduced Nodes}:
+Optimize the neural network architecture to achieve high accuracy with a minimal number of nodes, ensuring computational efficiency and practical applicability in real-world scenarios.\\
+
+1.4  \textbf{Holistic Predictions}:
+Provide a holistic and integrated approach to heart attack prediction, leveraging the complementary information from both datasets to enhance the model's overall accuracy.\\
+
+\newpage
+\section{\MakeUppercase{Research Questions/Hypotheses}}
+There are many questions that needs to be answered while moving on with the research. Some of the questions are:
+\begin{enumerate}
+\item  How can a multimodal neural network effectively integrate and leverage information from blood reports and ECG datasets for heart attack prediction?
+\item What level of accuracy can be achieved when the model processes either blood reports or ECG data individually?
+\item Does the incorporation of both datasets significantly improve the predictive accuracy of the model?
+\end{enumerate}
+
+The integration of blood reports and ECG data in a multimodal neural network will result in more accurate predictions compared to models utilizing only one type of input data.
+The model's flexibility will allow for accurate predictions even when only one type of data is available, showcasing its adaptability.\\
+The proposed neural network architecture, designed for efficiency with reduced nodes, will outperform traditional models in terms of both accuracy and computational speed.\\
+Through the exploration of these research questions and hypotheses, this study aims to contribute a versatile, accurate, and efficient tool for heart attack prediction, ultimately advancing the field of predictive healthcare using artificial neural networks
+
+\newpage
+\section{\MakeUppercase{Literature Review}}
+\textbf{Multimodal learning using convolution neural network and Sparse Autoencoder: }\\In this study, they created a system to classify patterns using a combination of convolutional neural networks (CNN) and sparse autoencoders (SAE), bringing together information from MRI and FDG-PET scans. Their main goal was to compare this fusion approach with using each scan alone, emphasizing the benefits of combining different types of information. The experiments showed that the method effectively captures local 3D patterns from both MRI and FDG-PET, and it significantly improves the accuracy of Alzheimer's disease prediction compared to using each scan separately. This improvement was observed in both the fusion of modalities and when using CNN with pretraining from SAE. In the future, they could enhance our approach by refining how to select patches during the autoencoder training step. There is also room for overall performance improvement in these systems with further advancements.\\
+
+\textbf{Multimodal Deep Neural Network with Image Sequence Features for Video Captioning:}\\This research paper focuses on the challenge of automatically describing video clips, which has applications in areas like video search, interaction with machines, and aiding physically handicapped individuals. The authors compare the effectiveness of a model called S2VT with a recently proposed approach called NeuralTalk2 for image captioning. S2VT uses a sequence-to-sequence model with Long Short-Term Memory (LSTM) networks to process video frames and generate textual descriptions. While effective, S2VT sometimes produces inaccurate sentences, possibly due to limited data. To address this, the authors integrate S2VT with NeuralTalk2 to create MDNNiSF, aiming to improve accuracy by leveraging additional image caption data. The paper suggests that combining these approaches can enhance video captioning accuracy and presents experimental results using Microsoft Research datasets.
+\newpage
+
+
+\section{\MakeUppercase{Methodology}}
+\textbf{1. Model Development:}
+
+The methodology for this research project involves the development and optimization of a multimodal neural network for heart attack prediction. The steps include:
+
+\textbf{1.1 Data Preprocessing:}
+
+Clean and preprocess both the tabular blood reports (.xlsx) and ECG datasets to ensure consistency and compatibility.
+Normalize and standardize the data to mitigate any variations and enhance model convergence.
+
+\textbf{1.2 Multimodal Neural Network Architecture:}
+Design a neural network architecture capable of processing both types of input data.
+Implement a flexible structure that allows for the model to handle either blood reports or ECG data individually.
+
+\textbf{1.3 Integration of Data Streams:}
+Develop mechanisms for the seamless integration of information from blood reports and ECG datasets.
+Explore feature fusion techniques to maximize the synergies between the two modalities.\\\\
+\textbf{2. Experiments and Evaluation:}
+
+\textbf{2.1 Experimental Setup:}
+
+Divide the dataset into training, validation, and test sets to train and evaluate the model.
+Conduct experiments with variations in dataset composition to assess the model's adaptability and robustness.\\
+\textbf{2.2 Performance Metrics:}
+
+Employ standard metrics such as accuracy, precision, recall, and F1 score to evaluate the model's predictive performance.
+Assess the model's efficiency in terms of computational resources and time.\\\\
+\textbf{3. Data Collection:}
+
+\textbf{3.1 Blood Reports:}
+
+Acquire tabular blood reports in .xlsx format from relevant healthcare databases or collaborating medical institutions.
+Ensure ethical considerations and data privacy compliance during data acquisition.\\
+\textbf{3.2 ECG Datasets:}
+
+Source ECG datasets from reputable medical databases or collaborating healthcare providers.
+Verify the quality and consistency of ECG data to maintain reliability in predictions.\\\\
+\textbf{4. Data Analysis:}
+
+\textbf{4.1 Feature Importance Analysis:}
+
+Conduct feature importance analysis to identify the most critical variables in both blood reports and ECG data.
+Use this analysis to inform model optimization and feature selection.\\
+
+\textbf{5. Tools and Software:}\\
+\textbf{5.1 Neural Network Framework:}
+
+Utilize a deep learning framework such as TensorFlow or PyTorch for the implementation of the multimodal neural network.\\
+\textbf{5.2 Data Processing and Analysis:}
+
+Employ Python libraries (e.g., Pandas, NumPy) for data preprocessing and analysis.
+Use visualization tools (e.g., Matplotlib, Seaborn) for insights into data distributions and model performance.\\
+\textbf{5.3 Experimentation and Evaluation:}
+
+Leverage machine learning tools integrated into the chosen deep learning framework for experimentation and model evaluation.\\
+By following this comprehensive methodology, the research aims to not only create an effective multimodal neural network but also ensure the reliability and validity of the heart attack prediction model. The combination of rigorous experimentation, thoughtful data analysis, and the use of advanced neural network frameworks will contribute to the success of this research endeavor.
+
+\\
+\\\\
+\newpage
+\textbf{Software Requirements:}
+\begin{enumerate}
+\item Windows 7+
+\item Programming language: Python 3.0
+\item Framework: Pytorch 1.4,Tensorflow  
+\item Libraries: NN module, Sequential    
+\item IDE: Anaconda environment (preferred)
+\end{enumerate}
+\newpage
+
+\section{\MakeUppercase{Proposed Approach}}
+\textbf{Model for blood report dataset (textual)}\\
+13 input columns area passed as a vector.\\
+The first layer is a Dense layer with 6 neurons and 'relu' activation function\\
+The second layer is a Dense layer with 8 neurons and 'relu' activation function\\
+The third layer is a flatten layer to reduce the size of the output\\
+The output layer has one neuron with 'sigmoid' activation function\\
+\includegraphics[width=1\textwidth]{ANN.png}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\textwidth]{ANN.png} 
+%     \caption{ANN network structure for blood report(textual data)}
+%     \label{fig:example}
+% \end{figure}\\
+
+\begin{enumerate}
+    \item \textbf{Loss function}: Binary Crossentropy
+    \item \textbf{Optimizer}: Adam
+   \item \textbf{Epochs}: 200
+\end{enumerate}
+
+ 
+\newpage
+
+
+\section{Ethical Considerations}
+\textbf{Privacy and Data Confidentiality:}
+ The utilization of personal health data, such as blood reports and ECG datasets, raises privacy concerns. Ensuring the confidentiality of individual health information is crucial to maintaining ethical standards.\\
+\textbf{Addressing Strategy:} Implement strict data anonymization and de-identification protocols. Remove personally identifiable information from the datasets before analysis. Collaborate with healthcare institutions and adhere to relevant data protection regulations.\\\\
+
+\textbf{Bias and Fairness:}
+Machine learning models, including neural networks, may inadvertently perpetuate biases present in the training data. This can lead to unfair and discriminatory outcomes, particularly in healthcare applications.
+
+\textbf{Addressing Strategy:} Implement techniques for mitigating bias in the dataset and monitor model outputs for fairness. Regularly review and update the model to address any biases that may emerge during training.
+
+
+
+\section{OUTPUTS}\vspace{5px}
+The model for the blood report (textual data) has achieved an accuracy of about 85.1\%. 
+
+\begin{center}
+\begin{tabular}{||c c c c||} 
+ \hline
+ No. of nodes in network & Layers & Accuracy &epochs \\ [0.5ex] 
+ \hline\hline
+129 & 2 & 84.7\% & 200 \\ 
+ \hline
+ 15 & 4 & 81.7\% & 200 \\ 
+ \hline
+ 15 & 4 & 85.1\% & 400 \\  [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+ (NB: The next step is to create a model for the ECG dataset)
+
+
+
+
+
+\newpage
+\section{TIMELINE}
+Below given the expected timeline to complete the project.\\\\
+% \includegraphics[width=1\textwidth]{Images/temp.png}
+\newpage
+\section{CONCLUSION}
+In conclusion, this research proposal outlines a pioneering approach to predict the likelihood of an individual experiencing a heart attack using a multimodal neural network. The proposed model integrates information from tabular blood reports in .xlsx format and ECG datasets, leveraging the strengths of both modalities. The central objectives include the development of a flexible neural network capable of handling either dataset independently and achieving heightened accuracy when both datasets are available.
+
+The significance of this research lies in its potential to revolutionize heart attack prediction, addressing the gaps in existing models by providing a more holistic and accurate assessment. The adaptability of the proposed model ensures practical applicability in real-world scenarios, accommodating variations in data availability. Moreover, the optimization of the neural network architecture aims to achieve high accuracy with a reduced number of nodes, contributing to computational efficiency and resource conservation.
+% \bibliographystyle{ieeetr}
+% \bibliography{references}
+\bibliographystyle{unsrt}
+\bibliography{references}
+\nocite{*}
+
+
+%ackwnoldegemnt
+
+
+
+\end{document}
